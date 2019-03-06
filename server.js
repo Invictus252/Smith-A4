@@ -74,7 +74,7 @@ app.get('/stats',function(req,res){
         writeResult(req, res, {'error' : err});
     else
         console.log("Query Success @ FUNCTION stats || moving to writeResult");
-        writeResult(req, res, {'result' : result});   
+        writeResult(req, res, {'result' : result[0]});   
     });
 });
 app.listen(process.env.PORT,  process.env.IP, startHandler())
