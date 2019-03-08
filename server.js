@@ -43,10 +43,8 @@ app.get('/game', function(req, res){
     {
       req.session.guesses = req.session.guesses + 1;
       result = {'gameStatus' : `Correct! It took you ${req.session.guesses} guesses. Play Again!`}; 
-      var sql = "INSERT INTO GAME (GUESS_COUNT,SECRET_NUM) VALUES ('" 
-                + req.session.guesses + "','" 
-                + req.session.answer + "')";    
-      con.query(sql,function(err,result){
+      var sql = "INSERT INTO GAME (GUESS_COUNT,SECRET_NUM) VALUES (?,?)";    
+      con.query(sql,req.session.guesses,req.session.answer,function(err,result){
           if(err) throw err;
           console.log("Query Success @ FUNCTION game || 1 record created @ table GAME");
         });    
